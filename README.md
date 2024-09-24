@@ -1,7 +1,7 @@
 # World Life Expectancy Project
 
 ## Overview
-This project involves cleaning and refining the **world_life_expectancy** dataset by addressing duplicated records, filling in missing data, and ensuring consistency across key columns like `Status` and `Life expectancy`. The data is stored in the **base_data** database.
+This project involves cleaning and refining the **world_life_expectancy** dataset by addressing duplicated records, filling in missing data, and ensuring consistency across key columns like `Status` and `Life expectancy`. The data is stored in the **base_data** csv file.
 
 ## Data Cleaning Steps
 
