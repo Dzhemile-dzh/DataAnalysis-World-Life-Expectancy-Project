@@ -7,13 +7,13 @@ This project involves cleaning and refining the **world_life_expectancy** datase
 
 ### 1. Identifying and Removing Duplicates
 
-#### 1.1 Find Duplicates Based on Country and Year
+### 1.1 Find Duplicates Based on Country and Year
 The following query identifies duplicate records by checking for multiple entries for each country and year:
 ```sql
 SELECT Country, Year, CONCAT(Country, Year), COUNT(CONCAT(Country, Year))
 FROM world_life_expectancy
 GROUP BY Country, Year, CONCAT(Country, Year)
-HAVING COUNT(CONCAT(Country, Year)) > 1;
+HAVING COUNT(CONCAT(Country, Year)) > 1;```
 
 #### 1.2 Find Duplicates Based on Country and Year
 ```sql
