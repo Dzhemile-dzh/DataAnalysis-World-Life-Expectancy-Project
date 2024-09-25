@@ -114,3 +114,59 @@ JOIN world_life_expectancy t3
 SET t1.Life expectancy =  ROUND((t2.Life expectancy + t3.Life expectancy)/2,1)
 WHERE t1.Life expectancy = '';
 ```
+
+##Exploratory data Analysis
+
+####1.Inspect the Life expectancy value change for each country, which shows life increase over 15 years
+
+```sql
+SELECT Country, 
+MIN(`Life expectancy`), 
+MAX(`Life expectancy`),
+ROUND(MAX(`Life expectancy`) - MIN(`Life expectancy`),1) AS Life_Increase
+FROM world_life_expectancy
+GROUP BY Country
+HAVING MIN(`Life expectancy`) <> 0
+AND MAX(`Life expectancy`) <> 0
+ORDER BY Country DESC;
+```
+
+####2.Life expectancy change over the years 
+
+```sql
+SELECT Year, ROUND(AVG(`Life expectancy`),2)
+FROM world_life_expectancy
+WHERE `Life expectancy` <> 0
+GROUP BY Year
+ORDER BY Year;
+```
+
+####3.Check for corelation between Life expectancy value and GDP
+```sql
+SELECT Country, ROUND(AVG(`Life expectancy`),1) AS Life_Exp, ROUND(AVG(GDP),1) AS GDP
+FROM world_life_expectancy
+GROUP BY Country
+HAVING Life_EXP > 0
+AND GDP > 0
+ORDER BY GDP;
+```
+
+####4.Adding a Filter for GDP and Life expectancy to showed with 'high' AND 'LOW' gdp countries depending from a SPECIFIC VALUE
+
+```sql
+SELECT 
+SUM(CASE WHEN GDP >= 1500 THEN 1 ELSE 0 END) AS High_Gdp_Count,
+AVG(CASE WHEN GDP >= 1500 THEN `Life expectancy` ELSE NULL END) AS High_Gdp_Life_expectancy,
+SUM(CASE WHEN GDP <= 1500 THEN 1 ELSE 0 END) AS Low_Gdp_Count,
+AVG(CASE WHEN GDP <= 1500 THEN `Life expectancy` ELSE NULL END) AS Low_Gdp_Life_expectancy
+FROM world_life_expectancy
+ORDER BY GDP;
+````
+
+####5.Corelation between countries with developing and developed status and how this change life expectancy
+
+```sql
+SELECT Status, ROUND(AVG(`Life expectancy`),1), COUNT(DISTINCT Country)
+FROM world_life_expectancy
+GROUP BY Status;
+```
