@@ -115,9 +115,9 @@ SET t1.Life expectancy =  ROUND((t2.Life expectancy + t3.Life expectancy)/2,1)
 WHERE t1.Life expectancy = '';
 ```
 
-##Exploratory data Analysis
+## Exploratory data Analysis
 
-####1.Inspect the Life expectancy value change for each country, which shows life increase over 15 years
+#### 1.Inspect the Life expectancy value change for each country, which shows life increase over 15 years
 
 ```sql
 SELECT Country, 
@@ -131,7 +131,7 @@ AND MAX(`Life expectancy`) <> 0
 ORDER BY Country DESC;
 ```
 
-####2.Life expectancy change over the years 
+#### 2.Life expectancy change over the years 
 
 ```sql
 SELECT Year, ROUND(AVG(`Life expectancy`),2)
@@ -141,7 +141,7 @@ GROUP BY Year
 ORDER BY Year;
 ```
 
-####3.Check for corelation between Life expectancy value and GDP
+#### 3.Check for corelation between Life expectancy value and GDP
 ```sql
 SELECT Country, ROUND(AVG(`Life expectancy`),1) AS Life_Exp, ROUND(AVG(GDP),1) AS GDP
 FROM world_life_expectancy
@@ -151,7 +151,7 @@ AND GDP > 0
 ORDER BY GDP;
 ```
 
-####4.Adding a Filter for GDP and Life expectancy to showed with 'high' AND 'LOW' gdp countries depending from a SPECIFIC VALUE
+#### 4.Adding a Filter for GDP and Life expectancy to showed with 'high' AND 'LOW' gdp countries depending from a SPECIFIC VALUE
 
 ```sql
 SELECT 
@@ -163,7 +163,7 @@ FROM world_life_expectancy
 ORDER BY GDP;
 ````
 
-####5.Corelation between countries with developing and developed status and how this change life expectancy
+#### 5.Corelation between countries with developing and developed status and how this change life expectancy
 
 ```sql
 SELECT Status, ROUND(AVG(`Life expectancy`),1), COUNT(DISTINCT Country)
